@@ -1,0 +1,103 @@
+  .interface-position{
+    margin: 10px 20px;
+    margin-top: 30px;
+    height:60px;
+  }
+
+  .button-position {
+    margin: 0 40px;
+  }
+
+  .calendar-container {
+    // width: 82.9vw;
+    margin: 0px 20px;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: calc(100vh - 100px);
+    h1 {
+      height: 50px;
+    }
+    h5 {
+      padding-left: 10px;
+      font-size: 18px;
+    }
+    &::-webkit-scrollbar {
+      text-align:center;
+      height: 10px;
+      width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #109CF1;
+    }
+  }
+
+  .consultation-each{
+    margin-top: 20px;
+    margin-right: 25px;
+    // height: calc(100vh - 206px);
+    // overflow-y: auto;
+    // overflow-x: hidden;
+    flex: 0 0 25%;
+
+    &::-webkit-scrollbar {
+        width: 1em;
+    }
+
+    &::-webkit-scrollbar-track {
+    }
+
+    &::-webkit-scrollbar-thumb {
+
+    }
+  }
+
+  .empty-meeting {
+    padding: 1vh;
+    margin-bottom: 10px;
+    width: 15vw;
+    background-color: #c2dbef;
+    opacity: 0.5;
+    height: 7vh;
+  p {
+    font-size:1.4vh;
+  }
+  }
+
+  .empty-meeting:hover {
+    opacity: 0.7;
+  }
+
+
+  .date-dash {
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .to-the-right {
+    margin-right: 30px;
+  }
+
+  #weekly {
+    font-weight: bolder;
+    border: 2px solid #109CF1;
+  }
+
+  .weekly-monthly {
+    color: #109CF1;
+    padding: 4px 60px;
+    border-radius: 4px;
+    background: #F4F4F4;
+    border: solid 1px #109CF1;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    font-weight: lighter;
+  }
+
+  .weekly-monthly:hover {
+    opacity: 0.7;
+    color: #109CF1;
+  }

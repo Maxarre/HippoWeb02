@@ -1,0 +1,106 @@
+<div class="interface-position">
+  <div class="d-flex justify-content-between" style="margin: 0px 20px">
+    <div>
+      <%= link_to "Semaine", dashboard_path, class: "btn weekly-monthly to-the-right", id: "weekly" %>
+      <%= link_to "Mois", dashboard_path, class: "btn weekly-monthly" %>
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-flat-add-meeting" data-toggle="modal" data-target="#meeting2Modal">
+      + Nouvelle consultation
+    </button>
+  </div>
+</div>
+
+<div class="calendar-container">
+  <div class="d-flex" style="margin-bottom: 20px">
+    <% @consultations.each do |day_consultations| %>
+      <div>
+        <div>
+          <h2 class="date-dash"> <%= day_consultations.first.start_time.strftime("%d") %> </h2>
+          <h2 class="date-dash"> <%= day_consultations.first.start_time.strftime("%A")%></h2>
+        </div>
+        <div class="consultation-each">
+          <% (8..20).to_a.each do |hour| %>
+            <% consultation =  day_consultations.select { |c| c.start_time.hour == hour }.first  %>
+            <% if consultation.present? %>
+              <div class="meeting-card link <%= 'lightblueborder' if consultation.consultation_type == 'First meeting' %> <%= 'blueborder' if consultation.consultation_type == 'Operation' %> <%= 'yellowborder' if consultation.consultation_type == 'Consultation' %>">
+                <div class="d-flex justify-content-between">
+                  <p><%= consultation.start_time.strftime("%H") %>h00</p><span class="consultation-type-text <%= 'lightblue-text' if consultation.consultation_type == 'First meeting' %> <%= 'blue-text' if consultation.consultation_type == 'Operation' %> <%= 'yellow-text' if consultation.consultation_type == 'Consultation' %>"><%= consultation.consultation_type %></span>
+                </div>
+                <h4><%= consultation.patient.first_name %> <%= consultation.patient.last_name  %></h4>
+                <%= link_to '', patient_path(consultation.patient) %>
+              </div>
+            <% else %>
+              <div class="empty-meeting" data-toggle="modal" data-target="#meeting-modal-<%= hour %>-<%= day_consultations.first.id %>">
+                <p><%= hour %>h00</p>
+              </div>
+              <%= render 'shared/modal_complete_meeting', hour: hour, date: day_consultations.first.start_time.strftime("%b %d, %Y"), id: day_consultations.first.id %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="meeting2Modal" tabindex="-1" role="dialog" aria-labelledby="meeting2ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="height: 120%; width: 120%;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="meeting2ModalLabel" style="font-size:3vh">Nouvelle consultation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for Consultation.new do |f| %>
+
+
+
+          <div class="d-flex justify-content-between">
+            <%= f.input :consultation_type, collection: ["First meeting", "Operation", "Consultation"] %>
+          </div>
+
+
+          <div class="d-flex justify-content-between">
+            <div style="width: 45%">
+              <div style="height: 80px">
+                <%= f.association :patient, label_method: lambda { |patient| "#{patient.first_name} #{patient.last_name}"} %>
+              </div>
+              <div>
+                <% if params[:date].nil?%>
+                  <%= f.input :start_time, as: :string, required: false, label: "Jour", input_html: {class: "meetpicker"} %>
+                <% else %>
+                  <%= f.input :start_time, as: :string, required: false, label: "Jour", input_html: {class: "meetpicker"}, input_html: {value: params[:date]} %>
+                <% end %>
+              </div>
+            </div>
+            <div style="width: 45%">
+              <div style="height: 80px">
+                <h4 style="font-size: 1rem; color:black;">Nouveau patient</h4>
+                <%= link_to "Nouveau patient", new_patient_path, class: "btn btn-outline-primary margin-right-50" %>
+              </div>
+              <div>
+                <label for="">Heure</label><br>
+                <input name="hour" type="text" required="false" class="hour-meeting timepicker form-control" style="background-color: white;" value="<%= params[:hour] %>">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div style="width: 100%">
+            <%= f.input :note_patient %>
+            </div>
+          </div>
+
+
+
+          <div class="d-flex justify-content-end">
+            <%= f.button :submit, "Ajouter", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

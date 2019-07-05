@@ -1,0 +1,15 @@
+updateTagglist = (newList) => {
+  const tagglist = document.getElementById('consultation-taggs');
+  tagglist.innerHTML = newList;
+}
+
+updateTagForm = (newForm) => {
+  const tagform = document.querySelector(".form-taggs");
+  tagform.innerHTML = newForm;
+}
+
+updateTagForm("<%= j render 'shared/taginput', consultation: @consultation, patient: @patient %>");
+
+updateTagglist("<%= j render 'shared/tagglist', consultation: @consultation, patient: @patient %>");
+
+removeTag()

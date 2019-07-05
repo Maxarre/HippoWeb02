@@ -1,0 +1,19 @@
+<%= simple_form_for [@patient, @consultation], html: {class: 'form-taggs'},remote: true do |f| %>
+      <div id="consultation-taggs">
+         <%= render 'shared/tagglist', consultation: @consultation, patient: @patient %>
+      </div>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][0]%>
+        <%= f.input :patient_complain, placeholder: 'Ajouter les remarques du patient', input_html: { class: 'input-card', style: 'height:16vh;', value: input_value} %>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][1]%>
+        <%= f.input :diagnostic, placeholder: 'Ajouter un diagnostic', input_html: { class: 'input-card', style: 'height:16vh;', value: input_value } %>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][2]%>
+        <%= f.input :care_plan, placeholder: 'Ajouter un plan médical', input_html: { class: 'input-card', style: 'height:16vh;', value: input_value } %>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][3]%>
+        <%= f.input :prescription, placeholder: 'Ajouter une prescription', input_html: { class: 'input-card', style: 'height:16vh;', value: input_value } %>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][2]%>
+        <%= f.input :note_patient, placeholder: 'Ajouter des informations pour le patient', input_html: { class: 'input-card', style: 'height:16vh;', value: input_value } %>
+        <div class="d-flex justify-content-between">
+          <%= link_to "PASSER", patient_path(@patient), class: "btn btn-outline-secondary height" %>
+          <%= f.button :submit, class: "btn btn-flat-add-consultation", data: { disable_with: false }, value:"Suivant"%>
+      </div>
+<% end %>

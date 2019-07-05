@@ -1,0 +1,5 @@
+<div class="consultation-index">
+  <% @consultations.each do |consultation| %>
+      <%= render 'shared/card_consultation', consultation: consultation %>
+  <% end %>
+</div>

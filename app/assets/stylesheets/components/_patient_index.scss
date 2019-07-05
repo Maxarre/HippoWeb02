@@ -1,0 +1,155 @@
+.card {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.card_free {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  background-color: white;
+}
+
+.patient_index{
+}
+
+.tabs {
+  width: 60%;
+  i {
+    color: white;
+  }
+}
+
+.tab {
+  i {
+    margin-right: 10px;
+  }
+}
+
+.erase {
+  text-decoration: none;
+  color: black;
+}
+
+.erase:hover {
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+#down {
+  line-height: 1.5;
+}
+
+.dashboard_index {
+  margin-top: 40px;
+}
+
+.container-index {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.category-index {
+  text-align: center;
+  margin: 20px 0px;
+  line-height: 1em;
+  p {
+    margin-bottom: 0px;
+  }
+  h5 {
+    color: #707683;
+    margin-bottom: 0px;
+  }
+}
+
+.category-index-info {
+  text-align: center;
+  margin: 10px 0px;
+  line-height: 1em;
+  overflow: auto;
+  p {
+    margin-bottom: 0px;
+    font-weight: 8px;
+    padding-left: 10px;
+  }
+  &::-webkit-scrollbar {
+      width: 1em;
+  }
+}
+
+.content {
+  height: 60px;
+}
+
+.content:hover {
+  background-color: rgba(140, 197, 243, .7)
+}
+
+.border-right {
+  border-right: 1px solid lightgrey;
+}
+
+
+.border-bottom {
+  border-bottom: 1px solid lightgrey;
+}
+
+.sticky {
+  position: sticky;
+  top: 60px;
+}
+
+.sticky-bar {
+  position: sticky;
+  top: 0px;
+}
+
+.consultation-type {
+  width: fit-content;
+  line-height: 1;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.consultation-type-text {
+  width: fit-content;
+  line-height: 1;
+}
+
+.show-link {
+  a {
+  text-decoration: none;
+
+  }
+ a:hover {
+  text-decoration: none;
+  color: #109CF1;
+  }
+}
+
+.tag {
+  p {
+    padding-right: 20px;
+  }
+}
+
+.display-patient-info {
+  margin:20px 0px;
+  padding: 4vh;
+  width: 90%;
+}
+
+.display-patient-info-bis {
+  margin:20px 0px;
+  padding: 4vh;
+}
+
+.position_date {
+  border-bottom: solid 2px #C2CFE0;
+  width: 40px;
+  position: absolute;
+  right: -40px;
+  top: 40px;
+  margin: auto;
+}

@@ -1,0 +1,66 @@
+<div style="margin-top: 15px;">
+  <div class="d-flex justify-content-around">
+    <div class="card_free patient_description">
+      <div class="patient_general_info">
+        <h2><%= @patient.first_name  %> <%= @patient.last_name  %></h2>
+        <h5><%= @patient.date_of_birth.strftime("%m/%d/%Y") %></h5>
+        <div class="mail_link"><a href=""><i class="far fa-envelope"></i></a></div>
+      </div>
+      <div class="patient_detailed_info">
+        <header>Prénom</header>
+        <p><%= @patient.first_name  %></p>
+        <header>Nom</header>
+        <p><%= @patient.last_name  %></p>
+        <header>Genre</header>
+        <p><%= @patient.gender  %></p>
+        <header>Adresse</header>
+        <div class="patient_address">
+        <p><%= @patient.address  %></p>
+        <p><%= @patient.city  %></p>
+        <p><%= @patient.zipcode  %></p>
+        </div>
+        <header>Email</header>
+        <p><%= @patient.email  %></p>
+        <header>Téléphone</header>
+        <p><%= @patient.phone  %></p>
+      </div>
+    </div>
+    <div class="patient_index">
+      <div class=sticky>
+        <div class="tabs card_free">
+          <div class="d-flex justify-content-around">
+            <div class="tab d-flex"><i class="fas fa-bars" id="down"></i><p class="show-link"><%= link_to 'Follow-up', patient_path(@patient)%></p></div>
+            <div class="tab d-flex"><i class="far fa-clipboard" id="down"></i><p>Dossier médical</p></div>
+            <div class="tab d-flex"><i class="fas fa-pills" id="down"></i><p>Traitements</p></div>
+            <div class="tab d-flex"><i class="far fa-envelope" id="down"></i><p>Historique d'emails</p></div>
+          </div>
+          <div class="d-flex">
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="full"></div>
+          </div>
+        </div>
+        <div class="dashboard_index">
+          <div class="d-flex justify-content-between">
+            <h5>Filtre: <a href=""> Tous</a></h5>
+            <%#= link_to "New email", new_consultation_email_path(@consultation), class:"follow-up" %>
+          </div>
+        </div>
+        <div class="email-index">
+          <% @patient.emails.each do |email| %>
+            <div class="email-card link">
+              <h3>Titre: <%= email.title %></h3>
+              <p>Envoyé: <%= email.consultation.end_time %></p>
+              <ul><li class='list-inline'><%= email.consultation.patient.first_name%> <%= email.consultation.patient.last_name  %></li></ul>
+              <span></span>
+              <%#= link_to '', patient_path %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,39 @@
+<div class="d-flex sticky-bar justify-content-between">
+  <div class="patient_description d-flex" id="patient-color">
+      <div class="patient_general_info">
+        <h4>Votre patient <strong><%= @patient.first_name  %> <%= @patient.last_name  %></strong></h4>
+      </div>
+      <div class="d-flex justify-content-between tabs">
+        <div class="tab d-flex"></div>
+        <div class="tab d-flex"><i class="fas fa-bars" id="down"></i><p class="show-link"><%= link_to 'Suivi médical', patient_path(@patient), remote: true %></p></div>
+        <div class="tab d-flex"><i class="far fa-clipboard" id="down"></i><p>Dossier médical</p></div>
+        <div class="tab d-flex"><i class="fas fa-pills" id="down"></i><p>Traitements</p></div>
+        <div class="tab d-flex"><i class="far fa-envelope" id="down"></i><p class="show-link"><%= link_to "Historique d'emails", patient_email_path(@patient), remote: true %></p></div>
+      </div>
+  </div>
+</div>
+
+<%= render 'show' %>
+
+
+
+<script>
+  function display_full(event) {
+    const id_clicked = event.currentTarget.dataset.id;
+    event.currentTarget.classList.remove('d-flex');
+    event.currentTarget.style.display = 'none';
+    const div_to_display = document.getElementById(`full_${id_clicked}`)
+    div_to_display.classList.add('d-flex')
+    div_to_display.style.display = 'block';
+  }
+
+  function display_resume(event) {
+    const id_clicked = event.currentTarget.dataset.id;
+    event.currentTarget.classList.remove('d-flex');
+    event.currentTarget.style.display = 'none';
+    const div_to_display = document.getElementById(`resume_${id_clicked}`)
+    div_to_display.classList.add('d-flex')
+    div_to_display.style.display = 'block';
+  }
+
+</script>

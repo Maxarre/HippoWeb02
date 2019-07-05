@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-between interface-position">
+  <div class="searchbar" style="background-color: transparent; height: 50px;">
+  <%= form_tag patients_path, id: "search_form", method: :get do %>
+    <%= select_tag "patient", options_from_collection_for_select(
+      Patient.all, :id, :full_name), class: 'select2', id: "select_a_patient" %>
+    <%= link_to patients_path do %>
+    <i style="padding-left: 5px" class="fas fa-times"></i>
+    <% end %>
+  <% end %>
+  </div>
+  <script>
+    window.onload = function() {
+      <% if @selected_patient %>
+        $('.select2').val("<%= @selected_patient %>")
+        $('.select2').trigger('change')
+      <% end %>
+      $('.select2').on('select2:select', function (e) {
+        console.log("hola")
+        console.log(e.params);
+        var data = e.params.data;
+        document.getElementById("search_form").submit()
+      });
+    }
+  </script>
+  <div>
+    <%= link_to "+ Nouveau patient", new_patient_path, class: "btn btn-flat-add-meeting button-position" %>
+  </div>
+</div>
+
+<div class="container-index">
+  <div>
+    <div class="title d-flex border-bottom card_free" style="margin-bottom: 10px">
+      <div class="category-index border-right" style="width: 15vw">
+        <h5>Nom</h5>
+      </div>
+      <div class="category-index border-right" style="width: 18vw">
+        <h5>Email</h5>
+      </div>
+      <div class="category-index border-right" style="width: 8vw">
+        <h5>Genre</h5>
+      </div>
+      <div class="category-index border-right" style="width: 9vw">
+        <h5>Créneau</h5>
+      </div>
+      <div class="category-index border-right" style="width: 11vw">
+        <h5>Métier</h5>
+      </div>
+      <div class="category-index" style="width: 16vw ">
+        <h5>Commentaire</h5>
+      </div>
+    </div>
+    <div class="card_free">
+      <% @patient.sort_by(&:last_name).each do |patient| %>
+        <div class="content link d-flex border-bottom " style="padding-left: 10px;">
+          <div class="d-flex category-index-info" style="width: 15vw;">
+            <h5><%= "#{patient.first_name} #{patient.last_name}" %></h5>
+          </div>
+          <div class="d-flex category-index-info" style="width: 18vw;">
+            <h5><%= patient.email %></h5>
+          </div>
+          <div class="d-flex category-index-info" style="width: 8vw;">
+            <h5><%= patient.gender %></h5>
+          </div>
+          <div class="d-flex category-index-info" style="width: 9vw;">
+            <% unless patient.consultations.empty? %>
+              <h5><%= patient.consultations.last.consultation_type %></h5>
+            <% end %>
+            <%#= @consultations.find_by(patient_id: patient.id).consultation_type %>
+
+          </div>
+          <div class="d-flex category-index-info" style="width: 11vw;">
+            <h5><%= patient.job_title %></h5>
+          </div>
+          <div class="d-flex category-index-info" style="width: 16vw">
+
+            <% unless patient.consultations.empty? %>
+              <% note_attachememnt = patient.consultations.last.patient_note_attachment %>
+              <p><%= note_attachememnt.nil? ? note_attachememnt : "#{note_attachememnt.first(60)} ..."%></p>
+            <% end %>
+            <%#= @consultations.find_by(patient_id: patient.id).patient_note_attachment %>
+          </div>
+          <%= link_to '', patient_path(patient) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

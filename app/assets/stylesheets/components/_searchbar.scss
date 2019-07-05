@@ -1,0 +1,33 @@
+.searchbar {
+  margin: auto 0px;
+  flex: 1 0 auto;
+  p {
+    font-size: 15px;
+    color: #7D7683;
+    // width: 82vw;
+  }
+  form {
+    width: 100%;
+  }
+
+  #search {
+    width: 100%;
+    border: none;
+    line-height: 3em;
+  }
+
+  // .right-side {
+  //   position: absolute;
+  //   right: 5px;
+  // }
+
+  // .left-side {
+  //   position: absolute;
+  //   left: 5px;
+  // }
+}
+
+.searchbar-deco {
+  padding: 10px;
+  background-color: #109CF1;
+}

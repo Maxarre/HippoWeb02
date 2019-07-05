@@ -1,0 +1,38 @@
+<div style="margin-top: 15px;">
+  <div class="d-flex justify-content-around">
+    <div class="card_free text-responsivity-patient-info" style="height: fit-content; width: 25vw;">
+      <div class="creation_category border-bottom">
+        <h5>Information du patient</h5>
+        <p>Informations générales sur le patient</p>
+      </div>
+
+      <div class="creation_category border-bottom">
+      <h5>Dossier médical</h5>
+        <p>Dossier médical du patient concerné</p>
+      </div>
+      <div class="creation_category border-bottom">
+        <h5>Traitements</h5>
+        <p>Une liste détaillée des traitements du patient</p>
+      </div>
+      <div id="selected_category" class="creation_category">
+        <h5>Assurance</h5>
+        <p>Toutes les informations sur l'assurance du patient</p>
+      </div>
+    </div>
+
+    <div class="card general-padding-20" style="width: 55vw; height: fit-content;">
+      <h2 class="mr">Assurance</h2>
+      <form class=general-padding-50>
+        <div class="form-group">
+          <label class="form_label">Entreprise</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="form_label">Numéro</label>
+          <input class="form-control">
+        </div>
+      </form>
+      <div class="d-flex justify-content-end"><%= link_to "Nouveau patient", dashboard_path, class: "btn btn-success wider"%></div>
+    </div>
+  </div>
+</div>

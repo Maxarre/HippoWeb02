@@ -1,0 +1,18 @@
+  <div class="dashboard_index">
+    <h1 style="font-size: 4vh; margin-bottom: 25px;"><strong><%= @patient.first_name  %> <%= @patient.last_name  %></strong> - Historique des emails</h1>
+  </div>
+  <div class="email-index">
+    <% patient.emails.each do |email| %>
+      <div class="email-card-show">
+        <div class="d-flex justify-content-between" style="padding-bottom: 10px;">
+          <% if email.title.present? %>
+          <h4><strong><%= email.title %></strong></h4>
+          <% else %>
+          <h4>Titre de l'email</h4>
+          <% end %>
+          <h5><%= email.consultation.start_time.strftime("%H") %>h55 <i class="fa fa-paper-plane" aria-hidden="true"></i></h5>
+        </div>
+          <h5>Follow up from: <%= email.consultation.start_time.strftime(" %e/%m/%y") %></h5>
+      </div>
+    <% end %>
+  </div>

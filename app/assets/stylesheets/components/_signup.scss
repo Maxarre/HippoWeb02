@@ -1,0 +1,19 @@
+// Specific CSS for your home-page
+.home {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
+
+.home-image {
+  display: flex;
+  align-items: center ;
+  justify-content: center;
+}
+
+
+.home-signup {
+  display: flex;
+  align-items: center ;
+  justify-content: center;
+}

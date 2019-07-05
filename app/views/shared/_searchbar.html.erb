@@ -1,0 +1,31 @@
+<div class="searchbar">
+  <!-- <p class='toto-side'><i class="fas fa-search"></i> Search for a patient</p> -->
+  <!-- <p class="right-side"><i class="far fa-bell"></i></p> -->
+
+  <%= form_tag patients_path, id: "search_form", method: :get do %>
+    <label for="select_a_patient">
+    Select a patient
+    <%= select_tag "patient", options_from_collection_for_select(
+      Patient.all, :id, :full_name), class: 'select2', id: "select_a_patient" %>
+    </label>
+  <%= link_to patients_path do %>
+    <i class="fas fa-times"></i>
+  <% end %>
+  <% end %>
+  </div>
+
+<script>
+  window.onload = function() {
+    <% if @selected_patient %>
+      $('.select2').val("<%= @selected_patient %>")
+      $('.select2').trigger('change')
+    <% end %>
+
+    $('.select2').on('select2:select', function (e) {
+      console.log("hola")
+      console.log(e.params);
+      var data = e.params.data;
+      document.getElementById("search_form").submit()
+    });
+  }
+</script>

@@ -1,0 +1,57 @@
+<div style="margin-top: 15px;">
+  <div id="patient_id" data-target="<%= @patient.id %>"></div>
+  <div id="consultation_id" data-target="<%= @consultation.id %>"></div>
+  <div class="consultation-card card-container-edit consultation-index-responsive">
+    <div class="d-flex justify-content-between">
+    <h2>Nouveau suivi médical (<%= @consultation.start_time.strftime("%A, %b %d") %>)</h2><h2 style="padding-right: 60px;"></h2>
+    </div>
+      <%= simple_form_for @consultation, url: add_tags_consultation_path(@consultation), html: {class: 'type-taggs'}, remote: true do |f|%>
+        <!-- Add tags as a comma separated list -->
+        <%= f.input :tag_list, label: "Nouveau tag", hint: "Séparez vos tags avec une virgule", input_html: { class: 'input-tagg', value: nil} %>
+      <% end %>
+
+    <%= simple_form_for [@patient, @consultation], html: { class: 'form-tags' } do |f| %>
+      <div id="consultation-taggs">
+         <%= render 'shared/tagglist', consultation: @consultation, patient: @patient %>
+      </div>
+
+      <div class='d-flex align-items-center' style="width: 95%; margin-bottom: 20px;">
+        <% value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][0]%>
+        <%= f.input :patient_complain, placeholder: 'Ajouter les remarques du patient', wrapper_html: { class: 'input-card' }, input_html: {style: 'height:16vh;', value: value} %>
+        <ul>
+          <li class='list-inline'><i class="fas fa-paperclip"></i></li>
+        </ul>
+      </div>
+      <div class='d-flex align-items-center form-input' style="width: 95%; margin-bottom: 20px;">
+        <% value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][1]%>
+        <%= f.input :diagnostic, placeholder: 'Ajouter votre diagnostic', wrapper_html: { class: 'input-card' }, input_html: {style: 'height:16vh;', value: value} %>
+        <ul>
+          <li class='list-inline'><i class="fas fa-paperclip"></i></li>
+        </ul>
+      </div>
+      <div class='d-flex align-items-center form-input' style="width: 95%; margin-bottom: 20px;">
+        <% value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][2]%>
+        <%= f.input :care_plan, placeholder: 'Ajouter le plan médical', wrapper_html: { class: 'input-card' }, input_html: {style: 'height:16vh;', value: value} %>
+        <ul>
+          <li class='list-inline'><i class="fas fa-paperclip"></i></li>
+        </ul>
+      </div>
+      <div class='d-flex align-items-center form-input' style="width: 95%">
+        <% value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][3]%>
+        <%= f.input :prescription, placeholder: 'Ajouter votre prescription', wrapper_html: { class: 'input-card' }, input_html: {style: 'height:16vh;', value: value} %>
+        <ul>
+          <li class='list-inline'><i class="fas fa-paperclip"></i></li>
+        </ul>
+      </div>
+      <div class='d-flex align-items-center form-input' style="width: 95%">
+        <% value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][4]%>
+        <%= f.input :note_patient, placeholder: 'Ajouter une note pour le patient', wrapper_html: { class: 'input-card' }, input_html: {style: 'height:10vh;'} %>
+        <div class="d-flex justify-content-between">
+          <%= link_to "PASSER", dashboard_path, class: "btn btn-outline-secondary height" %>
+          <%= f.button :submit, class:"btn btn-flat-add-consultation", data: { disable_with: false }, value:"Suivant" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

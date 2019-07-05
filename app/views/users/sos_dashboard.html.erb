@@ -1,0 +1,11 @@
+              <div class="d-flex justify-content-between">
+                <p><%= consultation.start_time.strftime("%H") %>h00</p><span class="consultation-type-text <%= 'lightblue-text' if consultation.consultation_type == 'First meeting' %> <%= 'blue-text' if consultation.consultation_type == 'Operation' %> <%= 'yellow-text' if consultation.consultation_type == 'Consultation' %>"><%= consultation.consultation_type %></span>
+              </div>
+              <h4><%= consultation.patient.first_name %> <%= consultation.patient.last_name  %></h4>
+              <%= link_to '', patient_path(consultation.patient) %>
+            </div>
+            <% else %>
+            <%= link_to new_consultation_path(hour: hour, date: day_consultations.first.start_time.strftime("%b %d, %Y")), style: "text-decoration:none" do%>
+              <div class="empty-meeting">
+                <p><%= hour %>h00</p>
+              </div>

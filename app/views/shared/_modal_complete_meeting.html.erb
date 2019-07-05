@@ -1,0 +1,48 @@
+  <!-- Modal -->
+  <div class="modal fade" id="meeting-modal-<%= hour %>-<%= id %>" tabindex="-1" role="dialog" aria-labelledby="meeting-modal-<%= hour %>Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="height: 120%; width: 120%;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="meeting-modal-<%= hour %>Label" style="font-size:3vh">Nouvelle consultation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <%= simple_form_for Consultation.new do |f| %>
+            <div class="d-flex justify-content-between">
+              <%= f.input :consultation_type, collection: ["First meeting", "Operation", "Consultation"] %>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div style="width: 45%">
+                <div style="height: 80px">
+                  <%= f.association :patient, label_method: lambda { |patient| "#{patient.first_name} #{patient.last_name}"} %>
+                </div>
+                <div>
+                  <%= f.input :start_time, as: :string, required: false, label: "Jour", input_html: {class: "meetpicker"}, input_html: {value: date} %>
+                </div>
+              </div>
+              <div style="width: 45%">
+                <div style="height: 80px">
+                  <h4>Unregistered patient</h4>
+                  <%= link_to "Nouveau patient", new_patient_path, class: "btn btn-outline-primary margin-right-50" %>
+                </div>
+                <div>
+                  <%= f.input :hour, as: :string, required: false, label: "Heure", input_html: {class: "timepicker hour-meeting"}, input_html: {value: hour}, placeholder: 'Heure' %>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div style="width: 100%">
+                <%= f.input :note_patient %>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <%= f.button :submit, "Add new meeting", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

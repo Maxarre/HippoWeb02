@@ -1,0 +1,67 @@
+.patient_description {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  h4, h3, i, p {
+    margin-bottom: 0;
+    color:white;
+  }
+}
+
+#patient-color {
+  background-color: #109CF1;
+  p, h2, h3, h5, a {
+    color: white;
+  }
+
+  a:hover {
+    color: #404751;
+  }
+}
+
+.patient_general_info {
+  border-right: solid 1px rgba(255, 255, 255, .7);
+  text-align: center;
+  width: 20%;
+  padding: auto 0px;
+  border:auto;
+  h2 {
+    font-weight: bold;
+ }
+}
+
+.patient_detailed_info {
+  line-height: 2;
+  h3 {
+    font-weight: bold;
+  }
+}
+
+.mail_link {
+  a {
+  text-decoration: none;
+  font-size: 30px;
+  color: #8F99A3;
+  }
+  a:hover {
+ color: black;
+ text-decoration: none;
+  }
+}
+
+.patient-category {
+  background-color: pink;
+  color: white;
+  border-radius: 15px;
+  width: fit-content;
+  margin: auto;
+  padding: 5px 15px;
+}
+
+.patient_address {
+  p {
+    margin-bottom: 0px;
+    line-height: 1.5em;
+  }
+}

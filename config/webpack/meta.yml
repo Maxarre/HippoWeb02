@@ -1,0 +1,7 @@
+# config/meta.yml
+
+meta_product_name: "HippoWeb"
+meta_title: "HippoWeb - For easier medical monitoring"
+meta_description: "Dematerialization of medical records"
+meta_image: "cover_01.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards

@@ -1,0 +1,5 @@
+  <ul class="tag-correction">
+    <% consultation.tag_list.each do |tag| %>
+      <li class="badgetag badge badge-secondary removetagg" data-consultation="<%= consultation.id %>" data-patient="<%= patient.id %>"><i class="fas fa-times"></i><%= tag %></li>
+    <% end %>
+  </ul>

@@ -1,0 +1,30 @@
+<div class="display-patient-info-bis">
+  <div><h2 class="consultation-type-text <%= 'lightblue-text color-text' if @consultation.consultation_type == 'First meeting' %> <%= 'blue-text color-text' if @consultation.consultation_type == 'Operation' %> <%= 'yellow-text color-text' if @consultation.consultation_type == 'Consultation' %>"><%= @consultation.consultation_type %> Suivi médical  (<%= @consultation.start_time.strftime("%A, %b %d") %>)</h2></div>
+  <div style="margin: 0px 20px;">
+    <div id="patient_id" data-target="<%= @patient.id %>"></div>
+    <div id="consultation_id" data-target="<%= @consultation.id %>"></div>
+      <%= simple_form_for @consultation, url: add_tags_consultation_path(@consultation), html: {class: 'type-taggs'}, remote: true do |f|%>
+        <%= f.input :tag_list, label: "Nouveau tag", hint: "Séparez vos tags avec une virgule", input_html: { class: 'input-tagg', value: nil} %>
+      <% end %>
+      <%= simple_form_for [@patient, @consultation], html: {class: 'form-taggs'},remote: true do |f| %>
+      <div id="consultation-taggs">
+         <%= render 'shared/tagglist', consultation: @consultation, patient: @patient %>
+      </div>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][0]%>
+        <%= f.input :patient_complain, placeholder: 'Ajouter les remarques du patient', input_html: { class: 'input-card', style: 'height:20vh;', value: input_value} %>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][1]%>
+        <%= f.input :diagnostic, placeholder: 'Ajouter votre diagnostic', input_html: { class: 'input-card', style: 'height:20vh;', value: input_value } %>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][2]%>
+        <%= f.input :care_plan, placeholder: 'Ajouter le plan médical', input_html: { class: 'input-card', style: 'height:16vh;', value: input_value } %>
+
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][3]%>
+        <%= f.input :prescription, placeholder: 'Ajouter votre prescription', input_html: { class: 'input-card', style: 'height:20vh;', value: input_value } %>
+        <% input_value = @consultation.tag_list.empty? ? "" : @consultation_templates["insomnie"][4]%>
+        <%= f.input :note_patient, placeholder: 'Ajouter une note pour le patient', input_html: { class: 'input-card', style: 'height:20vh;', value: input_value } %>
+      <div class="d-flex justify-content-between">
+        <%= link_to "PASSER", patient_path(@patient), class: "btn btn-outline-secondary height" %>
+        <%= f.button :submit, class: "btn btn-flat-add-consultation", data: { disable_with: false }, value:"Suivant" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="patient_index">
+  <div class=container>
+    <div id="ajaxmain">
+      <div class="dashboard_index">
+        <h1 style="font-size: 4vh; margin-bottom: 25px;"><strong><%= @patient.first_name  %> <%= @patient.last_name  %></strong> - Historique des consultations</h1>
+        <div class="d-flex align-items-center justify-content-end">
+          <%= link_to "Nouvelle consultation", edit_patient_consultation_path(@patient), class: "follow-up", remote: true %>
+        </div>
+      </div>
+      <div class="show-follow-up">
+        <% @patient.consultations.select{ |consultation| (consultation.start_time < DateTime.now) && !consultation.patient_complain.nil? }.each do |consultation| %>
+          <div class="show">
+            <div class="d-flex justify-content-between" data-id="<%= consultation.id %>" id="resume_<%= consultation.id %>" onclick="display_full(event)">
+              <div class="avatar-date d-flex <%= 'lightblue' if consultation.consultation_type == 'First meeting' %> <%= 'blue' if consultation.consultation_type == 'Operation' %> <%= 'yellow' if consultation.consultation_type == 'Consultation' %>"><div style="margin:auto"><%= consultation.start_time.strftime("%e")%><div style="margin:auto"></%><%= consultation.start_time.strftime("%b")%></div>
+                <div class="position_date"></div>
+              </%></div></div>
+              <div class="card_free display-patient-info">
+                <div class="d-flex justify-content-between">
+                  <div><h2 class="consultation-type-text <%= 'lightblue-text color-text' if consultation.consultation_type == 'First meeting' %> <%= 'blue-text color-text' if consultation.consultation_type == 'Operation' %> <%= 'yellow-text color-text' if consultation.consultation_type == 'Consultation' %>"><%= consultation.consultation_type %></h2></div>
+                </div>
+                <div class="d-flex tag consultation-type-text lightblue-text color-text">
+                  <%= render 'shared/tagglist', consultation: consultation, patient: @patient %>
+                </div>
+                <p><%= consultation.patient_complain %></p>
+                <i class="d-flex justify-content-center fas fa-chevron-down" style="padding-top: 10px; margin-bottom:-20px; color: #459BEA;"></i>
+              </div>
+            </div>
+            <div class="justify-content-between" data-id="<%= consultation.id %>" id="full_<%= consultation.id %>" onclick="display_resume(event)" style="display: none">
+              <div class="avatar-date d-flex <%= 'lightblue' if consultation.consultation_type == 'First meeting' %> <%= 'blue' if consultation.consultation_type == 'Operation' %> <%= 'yellow' if consultation.consultation_type == 'Consultation' %>"><div style="margin:auto"><%= consultation.start_time.strftime("%e")%><div style="margin:auto"></%><%= consultation.start_time.strftime("%b")%></div>
+                <div class="position_date"></div>
+              </%></div></div>
+              <div class="card_free display-patient-info">
+                <div class="d-flex justify-content-between">
+                   <div><h2 class="consultation-type-text <%= 'lightblue-text color-text' if consultation.consultation_type == 'First meeting' %> <%= 'blue-text color-text' if consultation.consultation_type == 'Operation' %> <%= 'yellow-text color-text' if consultation.consultation_type == 'Consultation' %>"><%= consultation.consultation_type %></h2></div>
+                </div>
+                <div class="d-flex tag consultation-type-text lightblue-text color-text">
+                  <%= render 'shared/tagglist', consultation: consultation, patient: @patient %>
+                </div>
+                <h4><strong>Plainte du patient</strong></h4>
+                <p><%= consultation.patient_complain %></p>
+                <h4><strong>Diagnostic</strong></h4>
+                <p><%= consultation.diagnostic %></p>
+                <h4><strong>Plan médical</strong></h4>
+                <p><%= consultation.care_plan %></p>
+                <h4><strong>Prescription</strong></h4>
+                <p><%= consultation.prescription %></p>
+                <i class="d-flex justify-content-center fas fa-chevron-up" style="padding-top: 10px; margin-bottom:-20px; color: #459BEA;"></i>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

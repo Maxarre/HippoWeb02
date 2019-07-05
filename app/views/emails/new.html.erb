@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Nouvel email</h2>
+  <%= link_to "Open template", dashboard_path, class:"open-template-button"%>
+  <%= simple_form_for [@consultation, @email] do |f| %>
+  <div><%= f.input :subject, placeholder: 'Sujet', wrapper_html: { class: 'input-card' } %></div>
+  <div><%= f.input :title, placeholder: 'Titre', wrapper_html: { class: 'input-card' } %></div>
+  <div class="d-flex align-items-center"><%= f.input :content, wrapper_html: { class: 'input-card' }, input_html: {value: "#{@consultation.prescription}", style: 'height:30vh;'} %></div>
+  <div class="d-flex justify-content-between">
+    <%= link_to "PASSER", dashboard_path, class: "btn btn-outline-secondary margin-right-50" %>
+    <%= f.button :submit, class:"btn-flat-add-patient" %>
+    </div>
+  <% end %>
+</div>

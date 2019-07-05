@@ -1,0 +1,55 @@
+<div style="margin-top: 15px;">
+  <div class="d-flex justify-content-around">
+    <div class="card_free text-responsivity-patient-info" style="height: fit-content; width: 25vw;">
+      <div id="selected_category" class="creation_category border-bottom">
+        <h5>Information du patient</h5>
+        <p>Informations générales sur le patient</p>
+      </div>
+
+      <div class="creation_category border-bottom">
+      <h5>Dossier médical</h5>
+        <p>Dossier médical du patient concerné</p>
+      </div>
+      <div class="creation_category border-bottom">
+        <h5>Traitements</h5>
+        <p>Une liste détaillée des traitements du patient</p>
+      </div>
+      <div class="creation_category">
+        <h5>Assurance</h5>
+        <p>Toutes les informations sur l'assurance du patient</p>
+      </div>
+    </div>
+
+    <%= simple_form_for @patient do |f| %>
+      <div class="card general-padding-20" style="width: 55vw">
+        <h3>Information sur le patient</h3>
+        <div class="d-flex justify-content-between">
+          <div style="width: 45%">
+            <%= f.input :first_name, placeholder: "Louis" %>
+            <%= f.input :date_of_birth, as: :string, required: false, input_html: {class: "datepicker"}, placeholder: "27 December 1822" %>
+          </div>
+          <div style="width: 45%" >
+            <%= f.input :last_name, placeholder: "Pasteur" %>
+            <%= f.input :gender, collection: ["Male", "Female"] %>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div style="width:25%;"><%= f.input :address, input_html: { class: 'form_width'}, placeholder: "83 Rue de Courcelles" %></div>
+          <div style="width:25%;"><%= f.input :city, input_html: { class: 'form_width'}, placeholder: "Arbois" %></div>
+          <div style="width:25%;"><%= f.input :zipcode, input_html: { class: 'form_width'}, placeholder: "39600" %></div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div style="width:25%;"><%= f.input :job_title, input_html: { class: 'form_width'}, placeholder: "Scientifique" %></div>
+          <div style="width:25%;"><%= f.input :email, input_html: { class: 'form_width'}, placeholder: "louis.pasteur@institutpasteur.net" %></div>
+          <div style="width:25%;"><%= f.input :phone, input_html: { class: 'form_width'}, placeholder: "03 45 68 80 88 " %></div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <%= link_to "PASSER", medicalrecord_path, class: "btn btn-outline-secondary margin-right-50" %>
+          <%= f.button :submit, "SUIVANT", class: "btn btn-primary margin-right-50" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div style="margin-top: 15px;">
+  <div class="d-flex justify-content-around">
+    <div class="card_free text-responsivity-patient-info" style="height: fit-content; width: 25vw;">
+      <div class="creation_category border-bottom">
+        <h5>Information du patient</h5>
+        <p>Informations générales sur le patient</p>
+      </div>
+
+      <div class="creation_category border-bottom">
+      <h5>Dossier médical</h5>
+        <p>Dossier médical du patient concerné</p>
+      </div>
+      <div id="selected_category" class="creation_category border-bottom">
+        <h5>Traitements</h5>
+        <p>Une liste détaillée des traitements du patient</p>
+      </div>
+      <div class="creation_category">
+        <h5>Assurance</h5>
+        <p>Toutes les informations sur l'assurance du patient</p>
+      </div>
+    </div>
+
+    <div class="card_free general-padding-20" style="width: 55vw; height: fit-content;">
+      <h2 class="mr">Traitements</h2>
+      <div class="inside_detail">
+        <button type="button" class="btn btn-outline-primary general-margin-40">Ajouter un traitement</button>
+      </div>
+      <div class="d-flex justify-content-end">
+        <%= link_to "PASSER", insurance_path, class: "btn btn-outline-secondary margin-right-50" %>
+        <%= link_to "SUIVANT", insurance_path, class: "btn btn-primary margin-right-50" %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

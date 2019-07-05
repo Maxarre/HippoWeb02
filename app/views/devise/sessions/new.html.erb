@@ -1,0 +1,31 @@
+<div class="home">
+  <div class="home-image d-flex">
+    <div>
+      <h1 style="font-size: 50px;">HippoWeb</h1>
+      <h3 style="font-size: 40px;">Pour un suivi médical simplifié</h3>
+      <div class="horizontal-line"></div>
+      <ul>
+        <li class="list-inline" style="font-size: 25px;"><i class="fas fa-file"></i> Dématérialiser les dossiers médicaux de vos patients</li>
+        <li class="list-inline" style="font-size: 25px;"><i class="fas fa-hourglass-half"></i> Gérer leur suivi médical en quelques clics</li>
+        <li class="list-inline" style="font-size: 25px;"><i class="fas fa-envelope-open"></i> Améliorer la relation avec votre patientèle grâce à une meilleure communication</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="home-signup">
+    <div class="form-placement">
+        <h2 style="font-size:4vh;">S'identifier</h2>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email, required: false, autofocus: true, placeholder: "louis.pasteur@gmail.com", wrapper_html: { class: "offilog" } %>
+            <%= f.input :password, required: false, placeholder: "••••••", wrapper_html: { class: "offilog" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: "btn btn-primary log-in" %>
+          </div>
+          <%= render "devise/shared/links" %>
+        <% end %>
+      </div>
+  </div>
+</div>
