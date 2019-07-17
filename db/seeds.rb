@@ -46,8 +46,8 @@ i = 1
   consultation = Consultation.new(
     patient_id: i,
     status: status_array.sample,
-    start_time: Faker::Time.forward(30, :morning),
-    end_time: Faker::Time.forward(30, :morning),
+    start_time: Faker::Time.forward(7, :morning),
+    end_time: Faker::Time.forward(7, :morning),
     consultation_type: type_array.sample,
     required_documents: Faker::Lorem.paragraph_by_chars,
     patient_complain: Faker::Lorem.paragraph_by_chars,
@@ -66,8 +66,8 @@ i = 54
   consultation = Consultation.new(
     patient_id: i,
     status: status_array.sample,
-    start_time: Faker::Time.forward(30, :afternoon),
-    end_time: Faker::Time.forward(30, :afternoon),
+    start_time: Faker::Time.forward(7, :afternoon),
+    end_time: Faker::Time.forward(7, :afternoon),
     consultation_type: type_array.sample,
     required_documents: Faker::Lorem.paragraph_by_chars,
     patient_complain: Faker::Lorem.paragraph_by_chars,
@@ -86,8 +86,8 @@ i = 108
   consultation = Consultation.new(
     patient_id: i,
     status: status_array.sample,
-    start_time: Faker::Time.forward(30, :evening),
-    end_time: Faker::Time.forward(30, :evening),
+    start_time: Faker::Time.forward(7, :evening),
+    end_time: Faker::Time.forward(7, :evening),
     consultation_type: type_array.sample,
     required_documents: Faker::Lorem.paragraph_by_chars,
     patient_complain: Faker::Lorem.paragraph_by_chars,
